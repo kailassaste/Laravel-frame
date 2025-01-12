@@ -8,6 +8,8 @@ use App\Http\Controllers\HandlingController;
 use App\Http\Middleware\CountryCheck;
 use App\Http\Middleware\AgeCheck;
 use App\Http\Controllers\DBcontroller;
+use App\Http\Controllers\Studentcontroller;
+use App\Http\Controllers\loginController;
 
 
 //  Route::get('/', function () {
@@ -88,8 +90,14 @@ Route::view('newhome','home2')->middleware([AgeCheck::class,CountryCheck::class]
 
 Route::get('users',[DBcontroller::class,'users']);
 
+//for student data
+Route::get('/students', [StudentController::class,'getStudents']);
 
-
+//session
+Route::view('login', 'login');
+Route::post('login',[loginController::class,'login']);
+Route::view('profile', 'profile');
+Route::get('logout',[loginController::class,'logout']);
 
 
 
